@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Papelitos</title>
+        <script src="lib/phaser.2.5.0.min.js"></script>
+      
+    </head>
+    <body>
+
+    <script type="text/javascript">
+     
+	var game = new Phaser.Game(360, 540, Phaser.CANVAS);
+	
+	var Paplelitos = function () {
+	this.logo = null;
+	this.style = { font: "40px Arial", fill: "#773E00", align: "center", boundsAlignH: "center", boundsAlignV: "middle" };
+	this.text1 = null;
+	this.text2 = null;
+
+	this.random1Final = null;
+	this.random2Final = null;
+	};
+	
+	Paplelitos.prototype = {
+	preload: function () {
+	this.load.image('logo', 'assets/logoPapelitos.png');
+	this.load.image('caja', 'assets/textBox.png');
+	this.load.image('generarBtn','assets/generarBtn.png')
+	},
+	
+	create: function () {
+	game.stage.backgroundColor = 0xcccccc;
+	this.logo = this.add.sprite(0, 0, 'logo');
+	this.caja1 = this.add.sprite(0,0,'caja');
+	this.caja2 = this.add.sprite(0,0,'caja');
+	this.generarBtn = this.add.button(0, 0, 'generarBtn',this.generarPalabra,this)
+	
+	this.text1 = game.add.text(game.world.centerX-130, game.world.centerY-100,'', this.style);
+	this.text2 = game.add.text(game.world.centerX-130, game.world.centerY-30,'' , this.style);
+	this.generarBtn.y=350;
+	this.generarBtn.x=20;	
+	this.logo.scale.x = 0.5;
+	this.logo.scale.y = 0.5;
+	this.logo.x = 45;
+	this.logo.y = 15;
+	this.caja1.x=20;
+	this.caja1.y=160;
+	this.caja2.x=20;
+	this.caja2.y=230;
+	
+	},
+	
+
+	generarPalabra: function(){
+		
+			this.randomWord1 = ['perro','carro','gallo','cerdo','cocodirlo','cerebro','concha','pantera','raposa','leopardo','pizza','carne'];
+			this.randomWord2 = ['limpia','sucia','negro','inflado','borracho','veloz','estupefata','sincera','saltarín','flácida','comelona','simple'];
+			this.random1Final1 =  Phaser.ArrayUtils.getRandomItem(this.randomWord1);
+			this.random1Final2 =  Phaser.ArrayUtils.getRandomItem(this.randomWord2);
+			
+			this.text1.setText(this.random1Final1);
+			this.text2.setText(this.random1Final2);
+		},
+	update: function () {
+		// game.input.onDown.addOnce(this.updateText, this);
+		
+		
+		//this.generarPalabra(this);
+		
+		}
+	};
+	
+	
+	
+	//pantalla de inicio
+	var PantallaInicio = function () { 
+	
+		};
+		
+	PantallaInicio.prototype =   {
+		preload: function () {
+			this.load.image('logo', 'assets/logoPapelitos.png')
+			this.load.image('inicioBtn', 'assets/inicioBtn.png')
+			},
+		create: function() {
+			game.stage.backgroundColor = 0xcccccc;
+			this.logoIntro = this.add.sprite(0, 0, 'logo');
+			this.inicioBtn = this.add.button(0, 0, 'inicioBtn',iniciarJuego);
+			
+			function iniciarJuego(){
+				game.state.start('Juego');
+				};
+			},
+		
+		
+		update: function(){
+			this.logoIntro.scale.x = 0.6;
+			this.logoIntro.scale.y = 0.6;
+			this.logoIntro.x = 25;
+			this.logoIntro.y = 100;
+			
+			this.inicioBtn.scale.x=0.8;
+			this.inicioBtn.scale.y=0.8;
+			this.inicioBtn.x=55;
+			this.inicioBtn.y=200
+			}
+		
+		};
+	game.state.add('Inicio', PantallaInicio);
+	game.state.add('Juego', Paplelitos);
+	game.state.start('Inicio');
+    </script>
+
+    </body>
+</html>

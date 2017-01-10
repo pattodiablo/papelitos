@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="lib/phaser.2.5.0.min.js"></script>
+      
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+  
+      
+       
+      
+    var mainState = {     
+
+        preload: function  () {
+            var logo;
+            game.load.image('logo', 'media/phaser.png');
+            game.load.image('paddle', 'assets/paddle.png');
+            game.load.image('brick', 'assets/brick.png');  
+            game.load.image('ball', 'assets/ball.png'); 
+        },
+
+        create: function  () {
+            scaleRatio = window.devicePixelRatio / 2;
+            game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+            game.physics.startSystem(Phaser.Physics.ARCADE);
+            game.stage.backgroundColor = '#3598db';
+          
+            game.world.enableBody = true;
+            logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+            logo.scale.setTo(scaleRatio, scaleRatio);
+            logo.anchor.setTo(0.5, 0.5);
+
+            this.left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+            this.right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+            this.paddle = game.add.sprite(150, 800, 'paddle');
+            this.paddle.scale.setTo(scaleRatio, scaleRatio);
+            this.paddle.body.immovable = true;
+            this.paddle.anchor.setTo(0.5, 0.5);
+            this.bricks = game.add.group(); 
+
+            for (var i = 0; i < 5; i++) {
+                    for (var j = 0; j < 5; j++) {
+                    // Create the brick at the correct position
+                    var brick = game.add.sprite(20+i*100*scaleRatio, 70+j*45*scaleRatio, 'brick');
+
+                    // Make sure the brick won't move when the ball hits it
+                    brick.body.immovable = true;
+
+                    // Add the brick to the group
+                    this.bricks.scale.setTo(scaleRatio, scaleRatio);
+                    this.bricks.add(brick);
+
+
+                }
+
+
+            }
+
+            this.ball = game.add.sprite(220, 300, 'ball');  
+            this.ball.scale.setTo(scaleRatio, scaleRatio);
+            this.ball.body.velocity.x = 200;
+            this.ball.body.velocity.y = 200;
+            this.ball.body.bounce.setTo(1); 
+            this.ball.body.collideWorldBounds = true;
+
+             
+        },
+
+        update: function (){
+
+            
+            if (this.left.isDown) this.paddle.body.velocity.x = -300;
+             else if (this.right.isDown) this.paddle.body.velocity.x = 300; 
+
+             // Stop the paddle when no key is pressed
+             else this.paddle.body.velocity.x = 0;  
+
+            game.physics.arcade.collide(this.paddle, this.ball);
+            game.physics.arcade.collide(this.ball, this.bricks, this.hit);
+
+            if (this.ball.y > this.paddle.y+60){
+
+          game.state.start('main');      
+            }
+            
+        },
+
+       
+
+        hit: function (ball, brick) {  
+        brick.kill();
+        },
+
+
+};
+
+   function gofull() {
+
+    if (game.scale.isFullScreen)
+    {
+        game.scale.stopFullScreen();
+    }
+    else
+    {
+        game.scale.startFullScreen(false);
+    }
+
+}
+
+var game = new Phaser.Game(window.innerWidth , window.innerHeight , Phaser.AUTO);  
+game.state.add('main', mainState);  
+game.state.start('main');
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Papelitos</title>
+        <script src="lib/phaser.2.5.0.min.js"></script>
+        <script src="lib/CanvasInput.js"></script>
+        <script src="lib/NoSleep.js"></script>
+        <script src="lib/papelitos.js"></script>
+        <script src="lib/Juego2Palabras.js"></script>
+        <script src="lib/AgregarPalabras.js"></script>
+        <script src="lib/AgregarDosPalabras.js"></script>
+        <script src="lib/ModalidadSelector.js"></script>
+        <script src="lib/PantallaInicio.js"></script>
+    </head>
+    <body>
+<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('deviceready', function() 
+            console.log("Cordova is initialized and ready!");
+        }, false);
+    </script>
+    
+    <style type="text/css">
+    	
+    	body{
+
+    		padding: 0px;
+    		margin: 0px;
+    		background-color: #5D5D5D;
+    	}
+    </style>
+
+    <script type="text/javascript">
+     
+	//var game = new Phaser.Game(window.screen.availWidth , window.screen.availHeight , Phaser.CANVAS);
+	var noSleep = new NoSleep();
+	    noSleep.enable();
+	var game = new Phaser.Game(480,640, Phaser.CANVAS);
+	var tipoJuego = false;
+	var randomWord1 = [];
+	var	randomWord2 = [];
+	var randomWord3 = ['Agujeta','Angel','Anillo','Árbol','Auto','Bala','Barco','Bolígrafo','Bota','Calzón','Cama','Camarón','Camisa','Candado','Cangrejo','Casa','Celular','Cinturón','Circo','Cocodrilo','Colcha','Computadora','Corazón','Corbata','Cuaderno','Cuchillo','Culo','Dado','Dedo','Delfín','Diente','Disco','Dragón','Enano','Escalera','Espejo','Faro','Felino','Fiesta','Foto','Gato','Gigante','Gorra','Guitarra','Jirafa','Lámpara','Lápiz','Lentes','León','Libro','Liebre','Llave','Madriguera','Mamut','Mandíbula','Mano','Manta','Mañana','Mar','Mensaje','Mesa','Micrófono','Navaja','Niño','Nube','Ojete','Ojo','Oreja','Orto','Oso','Pájaro','Paloma','Papá','Periódico','Perro','Persiana','Piedra','Pistola','Pluma','Presidente','Puente','Puerta','Puerto','Raposa','Reloj','Rifle','Rosa','Rueda','Sartén','Serpiente','Silla','Sol','Teléfono','Trompeta','Uña','Vela','Ventana','Vino','Violín','Yate','Zapato', 'Escuadra', 'Barómetro', 'Gónadas', 'Cometa', 'Cabellera','Zombie', 'Eunuco', 'Pene', 'Salsa China','Penenuco'];
+	var randomWord4 = ['Alegre','Amarillento','Anal', 'Represivo', 'Constante', 'Ortogonal', 'Aburrido','Alto','Amargo','Ancho','Atrevido','Bajo','Blando','Roto','Estrecho','Aguado','Duro','Negro','Bonito','Caliente','Enfermo','Dulce','Sucia','Capaz','Contento','Diferente','Resplandeciente','Corto','Difícil','Débil','Delgado','Derecho','Divertido','Famoso','Feo','Soplón','Fácil','Falso','Fresco','Frío','Fuerte','Gordo','Grande','Gay','Guapo','Húmedo','Igual','Imposible','Interesante','Inútil','Arrugado','Joven','Largo','Lento','Mayor','Listo','Mejor','Malo','Natural','Nacional','Peor','Menor','Nuevo','Negro','Pequeño','Muerto','Perfecto','Musical','Popular','Pobre','Poco','Rápido','Posible','Principal','Raro','Próximo','Brillante','Ardiente','Real','Recto','Feroz','Rico','Rojo','Salado','Sano','Seco','Simple','Social','Sinvergüenza','Audaz','Solo','Tímido','Triste','Tonto','Útil','Acabado','Viejo','Vivo','Sarnoso','Apretada','Amable','Curuchupa', 'Sangrante','Vaginal','Veloz','Vago','Flácido','Espacial'];
+	
+	
+	game.state.add('Inicio', PantallaInicio);
+	game.state.add('Juego', Paplelitos);
+	game.state.add('Juego2Palabras', Juego2Palabras);
+	game.state.add('AgregarPalabras', AgregarPalabras);
+	game.state.add('AgregarDosPalabras', AgregarDosPalabras);
+	game.state.add('ModalidadSelector', ModalidadSelector);
+	game.state.start('Juego');
+    </script>
+
+    </body>
+</html>
