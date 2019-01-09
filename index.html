@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <title>Papelitos</title>
         <script src="lib/phaser.2.5.0.min.js"></script>
+        <script src="lib/jquery-3.2.1.min.js"></script>
         <script src="lib/CanvasInput.js"></script>
         <script src="lib/NoSleep.js"></script>
         <script src="lib/papelitos.js"></script>
@@ -16,9 +17,14 @@
     <body>
 <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
+
+
+
         document.addEventListener('deviceready', function() 
             console.log("Cordova is initialized and ready!");
         }, false);
+
+  
     </script>
     
     <style type="text/css">
@@ -31,8 +37,24 @@
     	}
     </style>
 
+ 
+
+
     <script type="text/javascript">
-     
+ 
+      $(document).ready(function() {
+          $.ajax({
+          url: "http://intranet.eppetroecuador.ec/archivos/sustantivos.json",
+          dataType: 'jsonp',
+          success: function(url) {
+                processData(url);}
+             });
+      
+});
+     function processData(allText) {
+   console.log("entro acasi")
+  console.log(allText);
+}
 	//var game = new Phaser.Game(window.screen.availWidth , window.screen.availHeight , Phaser.CANVAS);
 	var noSleep = new NoSleep();
 	    noSleep.enable();
@@ -40,8 +62,10 @@
 	var tipoJuego = false;
 	var randomWord1 = [];
 	var	randomWord2 = [];
-	var randomWord3 = ['Agujeta','Angel','Anillo','Árbol','Auto','Bala','Barco','Bolígrafo','Bota','Calzón','Cama','Camarón','Camisa','Candado','Cangrejo','Casa','Celular','Cinturón','Circo','Cocodrilo','Colcha','Computadora','Corazón','Corbata','Cuaderno','Cuchillo','Culo','Dado','Dedo','Delfín','Diente','Disco','Dragón','Enano','Escalera','Espejo','Faro','Felino','Fiesta','Foto','Gato','Gigante','Gorra','Guitarra','Jirafa','Lámpara','Lápiz','Lentes','León','Libro','Liebre','Llave','Madriguera','Mamut','Mandíbula','Mano','Manta','Mañana','Mar','Mensaje','Mesa','Micrófono','Navaja','Niño','Nube','Ojete','Ojo','Oreja','Orto','Oso','Pájaro','Paloma','Papá','Periódico','Perro','Persiana','Piedra','Pistola','Pluma','Presidente','Puente','Puerta','Puerto','Raposa','Reloj','Rifle','Rosa','Rueda','Sartén','Serpiente','Silla','Sol','Teléfono','Trompeta','Uña','Vela','Ventana','Vino','Violín','Yate','Zapato', 'Escuadra', 'Barómetro', 'Gónadas', 'Cometa', 'Cabellera','Zombie', 'Eunuco', 'Pene', 'Salsa China','Penenuco'];
-	var randomWord4 = ['Alegre','Amarillento','Anal', 'Represivo', 'Constante', 'Ortogonal', 'Aburrido','Alto','Amargo','Ancho','Atrevido','Bajo','Blando','Roto','Estrecho','Aguado','Duro','Negro','Bonito','Caliente','Enfermo','Dulce','Sucia','Capaz','Contento','Diferente','Resplandeciente','Corto','Difícil','Débil','Delgado','Derecho','Divertido','Famoso','Feo','Soplón','Fácil','Falso','Fresco','Frío','Fuerte','Gordo','Grande','Gay','Guapo','Húmedo','Igual','Imposible','Interesante','Inútil','Arrugado','Joven','Largo','Lento','Mayor','Listo','Mejor','Malo','Natural','Nacional','Peor','Menor','Nuevo','Negro','Pequeño','Muerto','Perfecto','Musical','Popular','Pobre','Poco','Rápido','Posible','Principal','Raro','Próximo','Brillante','Ardiente','Real','Recto','Feroz','Rico','Rojo','Salado','Sano','Seco','Simple','Social','Sinvergüenza','Audaz','Solo','Tímido','Triste','Tonto','Útil','Acabado','Viejo','Vivo','Sarnoso','Apretada','Amable','Curuchupa', 'Sangrante','Vaginal','Veloz','Vago','Flácido','Espacial'];
+	var randomWord3 = ['Ratón','Agujeta','Angel','Anillo','Árbol','Auto','Bala','Barco','Bolígrafo','Bota','Calzón','Cama','Camarón','Camisa','Candado','Cangrejo','Casa','Celular','Cinturón','Circo','Cocodrilo','Colcha','Computadora','Corazón','Corbata','Cuaderno','Cuchillo','Culo','Dado','Dedo','Papanoel','Diente','Disco','Dragón','Enano','Escalera','Espejo','Faro','Felino','Fiesta','Foto','Gato','Gigante','Gorra','Guitarra','Jirafa','Lámpara','Lápiz','Lentes','León','Libro','Liebre','Llave','Madriguera','Mamut','Mandíbula','Mano','Manta','Mañana','Mar','Mensaje','Mesa','Micrófono','Navaja','Niño','Nube','Ojete','Ojo','Oreja','Orto','Oso','Pájaro','Paloma','Papá','Periódico','Perro','Persiana','Piedra','Pistola','Pluma','Presidente','Puente','Puerta','Puerto','Raposa','Reloj','Rifle','Rosa','Rueda','Sartén','Serpiente','Silla','Sol','Teléfono','Trompeta','Uña','Vela','Ventana','Vino','Violín','Yate','Zapato', 'Escuadra', 'Barómetro', 'Gónadas', 'Cometa', 'Cabellera','Zombie', 'Eunuco', 'Pene', 'Salsa China', 'Navidad', 'Papá Noel', 'Reno', 'Bombillo','Pesebre', 'José', 'María', 'Niño', 'Jsesus', 'Biblia', 'Dios', 'Burro', 'comida', 'Chancho', 'caramelo', 'Champaña', 'Castañas', 'Cena', 'Cesta', 'Galleta', 'Rompope', 'Pastel', 'Pan', 'Chocolate', 'Langostinos', 'Escarchado', 'Hielo', 'Bola de nieve', 'nevada', 'Copo', 'Ángele', 'Duende', 'Familia', 'Grinch', 'Cazcanueces', 'Santo', 'Scrooge', 'Pastores', 'Reyes Magos', 'Campanas', 'Vela', 'Árbol', 'Adorno', 'Guirnalda', 'Luces', 'Listón', 'Moño', 'Caja', 'Carbón', 'Regalo', 'Juguete', 'Ganzo', 'Pino', 'Pavo', 'Chimenea', 'Duende', 'Polo Norte', 'Incienso', 'Oro', 'Mirra', 'Botas', 'Guantes', 'Chaqueta', 'Bufanda', 'Calcetines', 'Suéter', 'Abrazo', 'Cristiano', 'Cuna', 'Jerusalén', 'gallo', 'Pastores', 'Espíritu', 'Estrella', 'Virgen', 'Muérdago', 'Desfile', 'Fiesta', 'Ritual', 'moño', 'caja', 'caridad', 'luces', 'amor', 'trineo', 'celofán', 'serpentina', 'confetti', 'Rodulfo', 'Piña', 'Rockefeller Center', 'Mi pobre angelito', 'Mery', 'Comeprecios', 'Paloma', 'coquetona', 'Delorean', 'Baltazar o negro de whatsapp', 'Invierno', 'Comino', 'Trabajo', 'Pantufla', 'Nazareno', 'Colchón', 'Belén', 'Aguinaldo', 'Dulce Jesús mío', 'Dildobombi', 'Misa del gallo', 'Calambre', 'Poro', 'Santa', 'Palosanto'];
+
+
+	var randomWord4 = ['Alegre','Amarillento','Anal', 'Represivo', 'Constante', 'Ortogonal', 'Aburrido','Alto','Amargo','Ancho','Atrevido','Bajo','Blando','Roto','Estrecho','Aguado','Duro','Negro','Bonito','Caliente','Enfermo','Dulce','Sucia','Capaz','Contento','Diferente','Resplandeciente','Corto','Difícil','Débil','Delgado','Derecho','Divertido','Famoso','Feo','Soplón','Fácil','Falso','Fresco','Frío','Fuerte','Gordo','Grande','Gay','Guapo','Húmedo','Igual','Imposible','Interesante','Inútil','Arrugado','Joven','Largo','Lento','Mayor','Listo','Mejor','Malo','Natural','Nacional','Peor','Menor','Nuevo','Negro','Pequeño','Muerto','Perfecto','Musical','Popular','Pobre','Poco','Rápido','Posible','Principal','Raro','Próximo','Brillante','Ardiente','Real','Recto','Feroz','Rico','Rojo','Salado','Sano','Seco','Simple','Social','Sinvergüenza','Audaz','Solo','Tímido','Triste','Tonto','Útil','Acabado','Viejo','Vivo','Sarnoso','Apretada','Amable','Roja', 'Singular','Blanca','Pequeña','Linda','Veloz','Atroz','Feroz','Feliz','Fofo','Bonito','Contundente','Vieja','Inquieto','Alegre','Buena','Elegante','tuqui tuqui ta','Calvo','descabellado','navideño','histérico','bipolar','hambriento','asado','relleno','esbelta','santo','gelatinoso','regulado','húmedo','Bacán','Masterizado','alimenticio','mal calibrado','culiaringo','invertida','superestrella','saltarina','ladrón','indefenso','empedrado','piojosa','muerdealmohadas','bastarda','sediento de venganza','te lo deja rojo','aventajado','cojo','turbulento','inflamable' ,'espectral' ,'del amor' ,'tasiturno' ,'con cosa' ,'satánico' ,'embalsamado' ,'acorazado' ,'maravilla' ,'evanecente' ,'del futuro' ,'mother father' ,'de babaco' ,'desdenable' ,'de iglesia calentito' ,'reptiliano' ,'jesuita' ,'cantada' ,'morosa' ,'verdosa' ,'lozana','pedorra','atemporal','caucásica','corregida','insabora','incolora','negra','incubada','in vitro','polonesa','dopada','arrimada','encebado','sangriento','sexy',' levanta colas' ,'camuflado','pechugon','amoblados','amoblado','amoblados','amoblado','amoblado'];
 	
 	
 	game.state.add('Inicio', PantallaInicio);
